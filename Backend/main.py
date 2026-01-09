@@ -1,7 +1,9 @@
 from fastapi import FastAPI, HTTPException#Lo principal de fastapi
 from fastapi.middleware.cors import CORSMiddleware #Nos ayudará a configurar el CORS y los permisos
 from pydantic import BaseModel #Nos ayudará a definir facilmente como objetos el contenido de las peticiones, ademas de ayudar con las validaciones
-import httpx 
+import httpx #Para configurar y administrar los paquetes que enviamos a n8n
+
+#ESTE BACKEND ESTA HECHO EN LENGUAJE PYTHON Y CON EL FRAMEWORK FASTAPI(O CREO QUE ES UNA LIBRERIA, NO ME ACUERDO)
 
 app = FastAPI()
 
@@ -23,7 +25,7 @@ class RespuestaChat(BaseModel):
 @app.post("/realizar-pregunta")
 
 async def consultarN8n(prompt: SolicitudPrompt):
-    n8n_url = "https://igts-jl.app.n8n.cloud/webhook-test/prompt-process"
+    n8n_url = "https://igts-jl.app.n8n.cloud/webhook-test/prompt-process"#ESTE LINK ES DE PRUEBA, DEBES ACTIVAR EL WORKFLOW PARA QUE FUNCIONE
 
     envio = {
         "texto": prompt.contenido,
